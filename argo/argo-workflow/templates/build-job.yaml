@@ -10,7 +10,7 @@ container:
     curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
     install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
     rm argocd-linux-amd64
-    argocd login --insecure --grpc-web localhost:8080 --username admin --password Jd34iR6ecyl68iOv
+    argocd login --insecure --grpc-web localhost:8080 --username admin --password 
     echo "listo papa"
   outputs:
     parameters:
