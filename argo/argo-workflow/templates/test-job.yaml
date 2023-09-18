@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Template
+metadata:
+  name: test-job-example
+container:
+  image: alpine:latest
+  command: ["/bin/sh"]
+  script: |
+    echo "Testing the 'Hello World' app"
+  outputs:
+    parameters:
+      - name: output
+        value: "test-job done"
+
