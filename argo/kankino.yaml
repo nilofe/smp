@@ -1,22 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: trivy-scan-
+  generateName: kaniko-build-
 spec:
-  entrypoint: trivy-scan
+  entrypoint: main
+  volumes:
+  - name: docker-config
+    secret:
+      items:
+      - key: .dockerconfigjson
+        path: config.json
+      secretName: docker-config
   templates:
-    - name: trivy-scan
-      container:
-        image: gcr.io/kaniko-project/executor:latest
-        args: ["--dockerfile=Dockerfile", "--destination=hola:v1"]
-        volumeMounts:
-          - name: kaniko-secret
-            mountPath: /secret
-      volumes:
-        - name: kaniko-secret
-          secret:
-            secretName: kaniko-secret
-    - name: trivy-scan
-      container:
-        image: aquasec/trivy:latest
-        args: ["image", "--format", "json", "hola:v1"]
+  - name: main
+    dag:
+      tasks:
+      - name: build-image
+        templateRef:
+          name: argo-hub.kaniko.0.0.1
+          template: build
+        arguments:
+          parameters:
+          - name: REPO
+            value: 'https://github.com/nilofe/smp.git'
+          - name: IMAGE_NAME
+            value: 'nilofe/go'
+          - name: GIT_TOKEN_SECRET
+            value: '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'
