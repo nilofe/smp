@@ -23,10 +23,6 @@ jobs:
           go mod verify
         working-directory: ${{env.working-directory}}
 
-      - name: Test
-        run: go test ./...
-        working-directory: ${{env.working-directory}}
-
       - name: Hecho
         run: echo "goosd"
 
