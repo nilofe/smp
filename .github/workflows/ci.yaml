@@ -18,7 +18,7 @@ jobs:
         run: cd go-test/ ; go mod download
 
       - name: Build
-        run: go build -o ./app/main
+        run: go build -o main
 
       - name: Hecho
         run: echo "goosd"
