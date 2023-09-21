@@ -1,4 +1,4 @@
-name: Go package
+name: Go ci-test
 
 on: [push]
 
@@ -14,12 +14,15 @@ jobs:
         with:
           go-version: '1.18'
 
-      - name: Build
+      - name: Cambiar de carpeta
+        run: cd go-test/
+
+      - name: Descargar módulos
         run: go mod download
 
-      - name: Test
+      - name: Build
         run: go build -o ./app/main
 
-      - name: hecho
+      - name: Hecho
         run: echo "goosd"
 
