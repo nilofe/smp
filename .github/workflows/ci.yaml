@@ -26,3 +26,11 @@ jobs:
       - name: Hecho
         run: echo "goosd"
 
+    steps:
+      - uses: action/checkout@v3
+      - name: build the Docker image
+        id: build-image
+        env:
+          DOCKER_HUB: 
+          IMAGE_TAG: 
+        run: docker build . --file Dockerfile --tag nilofe/go:$(date +%s)
