@@ -6,6 +6,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+       working-directory: ./go-test
+
     steps:
       - uses: actions/checkout@v2
 
@@ -15,10 +18,12 @@ jobs:
           go-version: '1.18'
 
       - name: Build
-        run: pwd ; cd smp/go-test/ ; go build -v ./...
-
+        run: pwd ; go build -v ./...
+        working-directory: ${{env.working-directory}}
+      
       - name: Test
-        run: go test
+        run: go test -v ./...
+        working-directory: ${{env.working-directory}}
 
       - name: Hecho
         run: echo "goosd"
