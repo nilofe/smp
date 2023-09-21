@@ -20,7 +20,6 @@ jobs:
       - name: Install dependencies
         run: |
           go version
-          go mod init
           go mod verify
         working-directory: ${{env.working-directory}}
 
