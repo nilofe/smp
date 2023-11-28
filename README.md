@@ -37,3 +37,4 @@ Creamos un enlace simbolico para nuestro carpeta de nginx de "/etc/nginx/sites-e
 ```Bash
 sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 ```
+
