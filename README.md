@@ -43,6 +43,8 @@ sudo systemctl restart nginx
 ```
 # Descargar r instalar Wordpress
 ```Bash
-mkdir -p /var/www/html/hola.com ; sudo wget -P /var/www/html/hola.com  https://wordpress.org/latest.tar.gz ||  tar -xzvf latest.tar.gz -C /var/www/html/hola.com/
+mkdir -p /var/www/html/hola.com  
+sudo wget -P /var/www/html/hola.com  https://wordpress.org/latest.tar.gz 
+tar -xzvf latest.tar.gz -C /var/www/html/hola.com/
 ```
 
