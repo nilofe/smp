@@ -37,4 +37,12 @@ Creamos un enlace simbolico para nuestro carpeta de nginx de "/etc/nginx/sites-e
 ```Bash
 sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 ```
+# Reiniciar Nginx
+```Bash
+sudo systemctl restart nginx 
+```
+# Descargar r instalar Wordpress
+```Bash
+mkdir -p /var/www/html/hola.com ; sudo wget -P /var/www/html/hola.com  https://wordpress.org/latest.tar.gz ||  tar -xzvf latest.tar.gz -C /var/www/html/hola.com/
+```
 
