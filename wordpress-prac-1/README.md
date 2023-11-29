@@ -13,7 +13,7 @@ sudo systemctl status mysql
 # Descargar e instalar Wordpress
 Creación de la carpeta para almacenar nuestro wordpress.
 ```Bash
-mkdir -p /var/www/html/hola.com 
+sudo mkdir -p /var/www/html/hola.com 
 ```
 descarga de wordpress en la carpeta creada.
 ```Bash
@@ -21,7 +21,7 @@ sudo wget -P /var/www/html/hola.com  https://wordpress.org/latest.tar.gz
 ```
 desconprimir la el archivo de descarga de nuestro wordpress.
 ```Bash
-tar -xzvf latest.tar.gz -C /var/www/html/hola.com/
+tar -xzvf /var/www/html/hola.com/latest.tar.gz -C /var/www/html/hola.com/
 ```
 # configuración de Mysql
 procederemos a configurar nuestra base de datos - Mysql.
@@ -54,19 +54,36 @@ en la carpeta "/etc/nginx/sites-available/default" cambiamos por un configuraci�
 sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
 server {
     listen 80;
-    server_name midominio.com; # Cambia esto por tu dominio o IP
+    server_name tudominio.com; # Reemplaza con tu dominio
 
-    root /var/www/html/hola.com/wordpress;
+    root /var/www/html/hola.com/wordpress; # Reemplaza con la ruta a tu instalación de WordPress
+
     index index.php index.html index.htm;
 
+    access_log /var/log/nginx/tudominio_access.log;
+    error_log /var/log/nginx/tudominio_error.log;
+
     location / {
-        try_files \$uri \$uri/ /index.php?\$args;
+        try_files $uri $uri/ /index.php?$args;
     }
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # Cambia la versión de PHP si es necesario
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock; # Reemplaza con tu versión de PHP
     }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+    location = /favicon.ico { log_not_found off; access_log off; }
+    location = /robots.txt { log_not_found off; access_log off; allow all; }
+    location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
+        expires max;
+        log_not_found off;
+    }
+
+    # Otros ajustes específicos de WordPress si es necesario
 }
 EOF'
 ```
