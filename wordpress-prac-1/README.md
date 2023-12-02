@@ -93,7 +93,7 @@ sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 ```
 revisamos nuestra sintaxis de nginx 
 ```Bash
-nginx -t 
+sudo nginx -t 
 ```
 # Reiniciar Nginx
 ```Bash
