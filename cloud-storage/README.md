@@ -51,7 +51,9 @@ haremos publico nuestro bucket.
 gsutil -m acl set -R -a public-read gs://${BUCKET}
 ```
 sacaremos la url de nuestro bucket publico.
-
+```Bash
+https://storage.googleapis.com/test-dev-54830-nombrebucket/smp/index.html
+```
 copiaremos un archivo en nuestro bucket con un tipo de clase distinta "Nearline".
 ```Bash
 gsutil cp -s nearline smp/images/hh.png gs://${BUCKET} 
