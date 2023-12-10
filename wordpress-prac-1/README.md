@@ -19,7 +19,7 @@ descarga de wordpress en la carpeta creada.
 ```Bash
 sudo wget -P /var/www/html/hola.com  https://wordpress.org/latest.tar.gz 
 ```
-desconprimir la el archivo de descarga de nuestro wordpress.
+la el archivo de descarga de nuestro wordpress.
 ```Bash
 tar -xzvf /var/www/html/hola.com/latest.tar.gz -C /var/www/html/hola.com/
 ```
