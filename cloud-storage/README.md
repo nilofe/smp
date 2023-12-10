@@ -31,7 +31,41 @@ Listaremos nuestro archivos de nuestro bucket.
 ```Bash
 gsutil ls gs://${BUCKET}/*
 ```
+ahora haremos una prueba de sincronización de nuestro bucket, agilizaremos algunos cambios.
+```Bash
+cp smp/README-template.md smp/INFO.md
+```
+```Bash
+rm smp/README-template.md
+```
+ahora sincronizaremos nuesra cambios locales con nuestro bucket.
+```Bash
+gsutil -m rsync -d -r smp gs://${BUCKET}/smp
+```
+listaremos el bucket para ver nuestro sincronización.
+```Bash
+gsutil ls gs://${BUCKET}/*
+```
+haremos publico nuestro bucket.
+```Bash
+gsutil -m acl set -R -a public-read gs://${BUCKET}
+```
+sacaremos la url de nuestro bucket publico.
 
-
-
-
+copiaremos un archivo en nuestro bucket con un tipo de clase distinta "Nearline".
+```Bash
+gsutil cp -s nearline smp/images/hh.png gs://${BUCKET} 
+```
+Revisaremos las clase de nuestro archivos.
+```Bash
+gsutil ls -Lr gs://${BUCKET} | more
+```
+Listo 
+eliminaremos nuestro bucket, antes de eliminar nuestro bucket tenemos que eliminar todos los archivos de nuestro bucket. 
+```Bash
+gsutil rm -rf gs://${BUCKET}/*
+```
+ahora eliminaremos nuestro bucket.
+```Bash
+gsutil rb gs://${BUCKET}
+```
