@@ -1,0 +1,18 @@
+version: '3'  # Versión de la sintaxis del archivo de Docker Compose
+services: # Define los servicios que serán administrados por Docker Compose
+  myapp:   # Nombre del servicio "myapp"
+    image: goi.v1.0 # Imagen a utilizar para este servicio
+    networks:
+      - mynetwork  # Conectar el servicio a la red "mynetwork"
+  nginx: # Nombre del servicio "nginx"
+    image: nginx:latest # Imagen a utilizar para este servicio
+    ports:
+      - "8080:80" # Mapeo de puertos (puerto del host:puerto del contenedor)
+    volumes:
+      - /home/trutr/test/docker/nginx.conf:/etc/nginx/conf.d/default.conf # Montar un archivo de configuración de Nginx
+    networks:
+      - mynetwork # Conectar el servicio a la red "mynetwork"
+
+networks:  # Define las redes que serán utilizadas por los servicios
+  mynetwork: # Nombre de la red "mynetwork"
+  # Opciones de red (opcional- mo definidad)

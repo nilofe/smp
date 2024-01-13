@@ -1,0 +1,16 @@
+bsd-freebsd
+bsd-openbsd
+bsd-netbsd
+bsd-midnightbsd
+linux-ubuntu
+linux-redhat
+linux-debian
+linux-opensuse
+Linux.txt-Ubuntu
+Linux.txt-RedHat
+Linux.txt-Debian
+Linux.txt-OpenSuse
+BSD.txt-FreeBSD
+BSD.txt-OpenBSD
+BSD.txt-NetBSD
+BSD.txt-MidnightBSD

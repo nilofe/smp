@@ -1,0 +1,5 @@
+GCP
+AWS
+Alibaba Cloud
+Digital Ocean
+IBM

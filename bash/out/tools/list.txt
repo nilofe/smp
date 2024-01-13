@@ -1,0 +1,20 @@
+cloud_providers-gcp
+cloud_providers-aws
+cloud_providers-alibaba cloud
+cloud_providers-digital ocean
+cloud_providers-ibm
+text_editors-vim
+text_editors-nano
+text_editors-notepadqq
+text_editors-atom
+text_editors-sublime
+cloud_providers.txt-GCP
+cloud_providers.txt-AWS
+cloud_providers.txt-Alibaba Cloud
+cloud_providers.txt-Digital Ocean
+cloud_providers.txt-IBM
+text_editors.txt-vim
+text_editors.txt-nano
+text_editors.txt-notepadqq
+text_editors.txt-atom
+text_editors.txt-sublime

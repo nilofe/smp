@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: checkov-
+spec:
+  entrypoint: checkov-1
+  arguments:
+    parameters:
+    - name: revison
+      value: 212
+  volumeClaimTemplates:
+  - metadata:
+      name: workdir
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 500Mi
+  templates:
+  - name: checkov-1
+    steps:
+    - - name: clone-repo
+        template: clone-repo
+    - - name: check-code
+        template: check-code
+  - name: clone-repo
+    container:
+      image: alpine/git
+      command: [sh, -c] # Usamos una imagen con Git para clonar el repositorio
+      args: ["
+        git clone
+        https://github.com/nilofe/nerd-start.git ; cd /nerd-start/prac-1 "] # Reemplaza con la URL de tu repositorio  # Ruta local donde se clonará el repositorio
+      volumeMounts:
+      - name: workdir
+        mountPath: /nerd-start/prac-1
+  
+  - name: check-code
+    container:
+      image: bridgecrew/checkov:latest  # Imagen de Checkov
+      command: [sh, -c]
+      args: ["
+        pwd ;
+        checkov -version ;
+        checkov -d /nerd-start/prac-1/ --framework dockerfile "]  # Ruta local donde se clonó el repositorio
+      volumeMounts:
+      - name: workdir
+        mountPath: /nerd-start/prac-1
